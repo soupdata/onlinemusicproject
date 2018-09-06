@@ -11,15 +11,16 @@ import java.util.*;
  */
 public class AnsjTest {
 
-    public static void test() {
+    public  String test(String str) {
         //只关注这些词性的词
+        String rs="";
         Set<String> expectedNature = new HashSet<String>() {{
             add("n");add("v");add("vd");add("vn");add("vf");
             add("vx");add("vi");add("vl");add("vg");
             add("nt");add("nz");add("nw");add("nl");
             add("ng");add("userDefine");add("wh");
         }};
-        String str = "欢迎使用ansj_seg,(ansj中文分词)在这里如果你遇到什么问题都可以联系我.我一定尽我所能.帮助大家.ansj_seg更快,更准,更自由!" ;
+        //String str = "欢迎使用ansj_seg,(ansj中文分词)在这里如果你遇到什么问题都可以联系我.我一定尽我所能.帮助大家.ansj_seg更快,更准,更自由!" ;
         Result result = ToAnalysis.parse(str); //分词结果的一个封装，主要是一个List<Term>的terms
         System.out.println(result.getTerms());
 
@@ -31,11 +32,13 @@ public class AnsjTest {
             String natureStr = terms.get(i).getNatureStr(); //拿到词性
             if(expectedNature.contains(natureStr)) {
                 System.out.println(word + ":" + natureStr);
+                rs=rs+word+" ";
             }
         }
+        return rs;
     }
-
-    public static void main(String[] args) {
-        test();
-    }
+//
+//    public static void main(String[] args) {
+//        System.out.println(test("记得开学的时候旁边坐了一个很有趣的同学，我们后来成为了很好的朋友，一玩就是一生"));
+//    }
 }

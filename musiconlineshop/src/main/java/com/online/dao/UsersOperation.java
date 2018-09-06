@@ -148,7 +148,7 @@ public class UsersOperation implements Users {
         //打开一个事务
         Transaction transaction=session.beginTransaction();
         // 用户 主键
-        Shopcart shopcart=(Shopcart)session.get(Shopcart.class, userid);
+        Shopcart shopcart=(Shopcart)session.get(Shopcart.class, Integer.parseInt(userid.trim()));
         //实例infoEntitys对象
         session.delete(shopcart);
         transaction.commit();
@@ -272,7 +272,7 @@ public class UsersOperation implements Users {
         // 1、得到Query对象，并写入hql语句
         Query query = session.createQuery("from Musiccomments where musicinfoid = ?");
         //2、填写上一步中占位符的内容
-        query.setParameter(0, musicid);
+        query.setParameter(0, Integer.parseInt(musicid));
         //query.setParameter(1, "奶油面包");
         //3、使用Query对象的list方法得到数据集合
         List<Musiccomments> list = query.list();
@@ -289,7 +289,7 @@ public class UsersOperation implements Users {
     @Override
     public Musicinfo CheckmusicInfo(String musicid) {
         Session session= DbConnection.getSession();
-        Musicinfo musicinfo=session.get(Musicinfo.class,musicid);
+        Musicinfo musicinfo=session.get(Musicinfo.class,Integer.parseInt(musicid));
         return  musicinfo;
     }
 

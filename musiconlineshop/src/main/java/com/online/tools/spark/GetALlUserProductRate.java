@@ -19,6 +19,10 @@ public class GetALlUserProductRate {
     }
 
 
+    /**
+     * 获取用户 商品 评分存入文件中丢给spark als
+     * @throws IOException
+     */
     public static void GetMesageToFlie() throws IOException {
         Session session = DbConnection.getSession();
         //查询出的结果根据id列进行反序排列.addOrder(Order.desc("musicinfobuyvaule"))
@@ -28,7 +32,6 @@ public class GetALlUserProductRate {
         for (Musiccomments musiccomments : infolist) {
 
             System.out.println("musiccomments::" + musiccomments);
-
             int userid=musiccomments.getUserid();
             int musicid=musiccomments.getMusicinfoid();
             int rate=musiccomments.getMusiccommentsrate();
